@@ -1,0 +1,31 @@
+services:
+  auth:
+    build: ./services/auth_service
+    env_file: .env
+    volumes:
+      - ./data:/data
+    ports:
+      - '8001:8000'
+    restart: unless-stopped
+
+  inventory:
+    build: ./services/inventory_service
+    env_file: .env
+    volumes:
+      - ./data:/data
+    ports:
+      - '8002:8002'
+    restart: unless-stopped
+
+  product:
+    build: ./services/product_service
+    env_file: .env
+    volumes:
+      - ./data:/data
+    ports:
+      - '8003:8003'
+    restart: unless-stopped
+
+volumes:
+  data:
+    driver: local
